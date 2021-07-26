@@ -1,0 +1,65 @@
+<div class="container my-4">
+  <h1 class="text-center">Gestor de Estudiantes</h1>
+  <div class="row">
+    <div class="col-12 col-lg-4 card mt-4 p-3">
+      <h4 class="text-center">Agregar Estudiante</h4>
+      <form>
+        <div class="form-group mb-3">
+          <label for="matricula">Matricula</label>
+          <input [(ngModel)]="est.matricula" type="text" class="form-control" name="matricula" id="matricula">
+        </div>
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre</label>
+          <input [(ngModel)]="est.nombre" type="text" class="form-control" name="nombre" id="nombre">
+        </div>
+        <div class="form-group mb-3">
+          <label for="edad">Edad</label>
+          <input [(ngModel)]="est.edad" type="number" class="form-control" name="edad" id="edad">
+        </div>
+        <div class="form-group mb-3">
+          <label for="matricula">Sexo</label> <br />
+          <label class="form-check-label">
+            <input [(ngModel)]="est.sexo" type="radio" class="form-check-input" name="radi" id="radiom" value="m">
+            Masculino
+          </label>
+          <label class="form-check-label">
+            <input [(ngModel)]="est.sexo" type="radio" class="form-check-input" name="radi" id="radiof" value="f">
+            Femenino 
+          </label>
+        </div>
+        <div class="form-group mb-3">
+          <label for="cuatrimestre">Cuatrimestre</label>
+          <input [(ngModel)]="est.cuatrimestre" type="number" class="form-control" name="cuatrimestre" id="cuatrimestre">
+        </div>
+        <button type="submit" (click)="!editing? createEstudiante(): editEst()" class="btn btn-primary w-100">{{!editing? 'Agregar': 'Editar'}}</button>
+      </form>
+    </div>
+    <div class="col-12 col-lg-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Matricula</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Cuatrimestre</th>
+            <th scope="col">actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let est of data">
+            <td>{{est.matricula}}</td>
+            <td>{{est.nombre}}</td>
+            <td>{{est.edad}}</td>
+            <td>{{est.sexo}}</td>
+            <td>{{est.cuatrimestre}}</td>
+            <td>
+              <button class="btn btn-danger" (click)="delete(est._id)"><i class="fas fa-trash-alt"></i></button>
+              <button class="btn btn-info" (click)="edit(est)"><i class="fas fa-edit"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
